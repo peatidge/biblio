@@ -2,8 +2,7 @@
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.Text;
-using Aspose.Html.Saving;
-using Aspose.Html.Converters;
+
 
 namespace Tela.Models;
 //TODO:b 307. Add Q classification.
@@ -104,43 +103,7 @@ public class Q
     //NOTE: This method generates a fractal image and saves it to the wwwroot/images folder rather than copping the cost of rendering it on the fly
     //for each page request which would be a significant performance hit.
     //Apose.HTML is used to convert the HTML to an image.
-    public static void F()
-    {
-        var result = new StringBuilder();
-        result.Append("<pre>");
-        double width = 90, height = 65, xmin = -2.1, xmax = 1, ymin = -1.3, ymax = 1.3, xstep = (xmax - xmin) / width, ystep = (ymax - ymin) / height;
-        string[] colors = { "#000000", "#0000FF", "#008000", "#00FFFF", "#FF0000", "#FF00FF", "#FFFF00", "#FFFFFF", "#FFA500", "#800080" };
-        for (int py = 0; py < height; py++)
-        {
-            for (int px = 0; px < width; px++)
-            {
-                double x0 = xmin + px * xstep, y0 = ymin + py * ystep, x = 0, y = 0;
-                int iteration = 0, max_iteration = 1000;
-                while (x * x + y * y <= 4 && iteration < max_iteration)
-                {
-                    double xtemp = x * x - y * y + x0;
-                    y = 2 * x * y + y0;
-                    x = xtemp;
-                    iteration++;
-                }
-                result.Append($"<span style=\"color:{colors[iteration < max_iteration ? iteration % 10 : 0]};\">");
-                result.Append(iteration < max_iteration ? (iteration % 10).ToString() : " ");
-                result.Append("</span>");
-            }
-            result.Append("<br/>");
-        }
-        result.Append("</pre>");
-        Converter.ConvertHTML(result.ToString(), ".", new ImageSaveOptions(), Path.Combine("./wwwroot/images", "fracked-lg.png"));
-        using var ebb = new FileStream(Path.Combine("./wwwroot/images", "fracked-lg.png"), FileMode.Open);
-        var image = Image.FromStream(ebb)!;
-        int iWidth = 350, iHeight = (iWidth * image.Height) / image.Width;
-        var thumbnail = new Bitmap(iWidth, iHeight);
-        using var g = Graphics.FromImage(thumbnail);
-        g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-        g.DrawImage(image, 0, 0, iWidth, iHeight);
-        using var flow = new FileStream(Path.Combine("./wwwroot/images", "fracked.png"), FileMode.Create);
-        thumbnail.Save(flow, ImageFormat.Png);
-    }
+    
     //TODO:b 328. Add Q.One (329-330 site.scss, 331 whats.js)
     public static Dictionary<string, string> One => new()
     {

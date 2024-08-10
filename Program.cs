@@ -63,10 +63,8 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+
 }
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
@@ -77,7 +75,7 @@ app.MapRazorPages();
 //TODO:b 327. Invoke Q.F prior to app run to generate a new fractal image 
 //Q.F();
 //TODO:b 425. Invoke EnsureExistDance prior to app run to ensure the existence of SQL view(s) and/or records in the database
-EntityMapper.EnsureExistDance(app.Configuration);
+//EntityMapper.EnsureExistDance(app.Configuration);
 app.Run();
 //TODO:b 490. In this iteration some general work was also done to improve the overall quality (I hope) use a keen eye to spot the changes 
 //TODO:b 491. to 500. You know what to do :)

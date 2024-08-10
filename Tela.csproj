@@ -7,9 +7,7 @@
     <UserSecretsId>aspnet-Tela-d62d69d3-93e9-4beb-9cde-dc35ca489f73</UserSecretsId>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
-    <ApplicationInsightsResourceId>/subscriptions/9f5428d0-2c77-4223-8988-65f83b8a11a2/resourceGroups/quiz-engine/providers/microsoft.insights/components/bibliotheca-procuratio-systema</ApplicationInsightsResourceId>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;CA1416;</NoWarn>
     <WarningLevel>3</WarningLevel>
@@ -247,8 +245,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspose.HTML" Version="24.6.0" />
-    <PackageReference Include="Azure.Monitor.OpenTelemetry.AspNetCore" Version="1.2.0" />
     <PackageReference Include="cloudscribe.Pagination.Models" Version="1.1.0" />
     <PackageReference Include="cloudscribe.Web.Pagination" Version="6.0.0" />
     <PackageReference Include="Mapster" Version="7.4.0" />
