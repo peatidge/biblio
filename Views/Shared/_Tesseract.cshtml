@@ -1,0 +1,46 @@
+﻿@{
+    //TODO:b 431. Add _Tesseract.cshtml to the Views Shared folder.
+    //TODO:b 432. Add tesseract.js to the project (and include in _Scripts.cshtml))
+    (string bg, string label)[] chickens = [
+        ("danger","Highly Unstable (tickety-boo)"),
+        ("warning","Neutral Stability (tick tick tick)"),
+        ("success","Extremely Stable (tock'n critical)")
+    ];
+}
+<div class="bg-dark pt-1" style="min-height:3px;">
+    <div id="tesseract" class="progress-stacked mx-1 bg-dark" style="height:3px;">
+        @foreach (var c in chickens)
+        {
+            <div class="progress bg-dark" role="progressbar" aria-label="@(c.label)" aria-valuemin="0" aria-valuemax="100" style="width:33.3%;height:3px;">
+                <div class="progress-bar bg-@(c.bg) progress-bar-striped progress-bar-animated w-0"></div>
+            </div>
+        }
+    </div> 
+</div>
+<span id="q-bit"  
+    title="Tesseract" 
+    class="material-symbols-outlined position-absolute top-0 end-0" 
+    style="z-index:5;font-size:1em;cursor:help;display:none">
+    view_in_ar
+</span>
+<div class="toast-container position-fixed top-0 start-0 p-3">
+    <div id="tesseract-toast" class="toast " role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+        <div class="toast-header bg-dark  justify-content-between align-items-center">
+            <span class="d-flex align-items-center text-info">
+                <span class="material-symbols-outlined" title="Tesseract">view_in_ar</span>
+                <strong class="me-auto">Tesseract</strong>
+            </span>
+            <span class="text-warning">
+                <small>@(Q.Int(-42, 43)) Tessa-fractal Units</small>
+            </span>        
+            <button type="button" data-bs-dismiss="toast" aria-label="Close" class="btn-close-white"></button>
+        </div>
+        <div class="toast-body">
+            <div class="text-center">
+                <p class="text-primary">CRITICAL STABILITY REACHED</p>
+                <p class="war-p p-0" style="font-size:small">+ axelotl ^ required ~</p>
+            </div>          
+            <button id="initiate-axelotl-vaporization-fluctuation" class="btn btn-outline-success w-100">Flux Loxa</button>
+        </div>
+    </div>
+</div>

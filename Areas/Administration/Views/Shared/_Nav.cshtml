@@ -1,0 +1,87 @@
+﻿@{
+   //TODO:b 250. Add partial _Nav.cshtml file to /Areas/Administration/Views/Shared (Administration area)
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-1">
+    <div class="container-fluid m-0">
+        @{
+            /*TODO:b 338b. Add _Toggle paritial view to Administration/Views/Shared/_Nav.cshtml*/
+        }
+        <partial name="_Toggle" />
+        <partial name="_Bibliotheca" />
+        <a class="nav-link d-flex align-center py-1 px-3" asp-area="" asp-controller="Home" asp-action="Index" title="Bibliotheca+Procuratio~Systema">
+            <span class="material-symbols-outlined">hub</span>
+            <span>~B-P+S </span>
+        </a>
+        <div class="d-inline-flex">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a title="Administration" class="nav-link" asp-area="Administration" asp-controller="Home" asp-action="Index">
+                        <span class="material-symbols-outlined" id="t-settings">
+                            settings
+                        </span>
+                    </a>
+                </li> 
+                @{/*TODO:b 306. Add Member Index link to Administration Views Shared _Nav.cshtml*/}
+                <li class="nav-item">
+                    <a title="Members" class="nav-link" asp-area="Administration" asp-controller="Member" asp-action="Index">
+                        <span class="material-symbols-outlined" id="t-members">diversity_1</span>
+                    </a>
+                </li>
+                @{
+                    /*TODO:b 354. Add Reference Index link to Administration Views Shared _Nav.cshtml*/
+                }
+                <li class="nav-item">
+                    <a title="Book References" class="nav-link" asp-area="Administration" asp-controller="Reference" asp-action="Index">
+                        <span class="material-symbols-outlined" id="t-references">
+                            qr_code_scanner
+                        </span>
+                    </a>
+                </li>
+                @{
+                    /*TODO:b 388. Add Transaction Index link to Administration Views Shared _Nav.cshtml*/
+                }
+                <li title="Book Transactions" class="nav-item">
+                    <a class="nav-link" asp-area="Administration" asp-controller="Transaction" asp-action="Index">
+                        <span class="material-symbols-outlined" id="t-transactions">
+                            manage_history
+                        </span>
+                    </a>
+                </li>
+                @{
+                    /*TODO:b 411. Add Transaction Hold/Loan links to Administration Views Shared _Nav.cshtml*/
+                }
+                <li class="nav-item">
+                    <a title="Hold" class="nav-link"  asp-area="Administration" asp-controller="Transaction" asp-action="Hold">
+                        <span class="material-symbols-outlined" id="t-hold">
+                            hand_bones
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a title="Process Loan" class="nav-link" asp-area="Administration" asp-controller="Transaction" asp-action="Loan">
+                        <span class="material-symbols-outlined" id="t-loan">
+                            auto_stories
+                        </span>
+                    </a>
+                </li>
+                @{
+                    /*TODO:b 417. Add Restoration Index link to Administration Views Shared _Nav.cshtml*/
+                }
+                <li class="nav-item">
+                    <a title="Restorations" class="nav-link" style="padding: 0.35rem;" asp-area="Administration" asp-controller="Restoration" asp-action="Index">
+                        <span class="material-symbols-outlined" id="t-restore">
+                            construction
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <partial name="_LoginPartial" />
+        </div>
+    </div>
+</nav>

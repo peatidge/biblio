@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2024-06-11T21:56:25.9248192Z"
+    },
+    "appInsights1": {
+      "restored": true,
+      "restoreTime": "2024-07-01T10:50:37.4922079Z"
+    }
+  },
+  "parameters": {
+    "appInsights1.resourceGroupName": {
+      "Name": "appInsights1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "quiz-engine"
+    },
+    "appInsights1.subscriptionId": {
+      "Name": "appInsights1.subscriptionId",
+      "Type": "subscription",
+      "Value": "9f5428d0-2c77-4223-8988-65f83b8a11a2"
+    }
+  }
+}

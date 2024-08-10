@@ -1,0 +1,46 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = Html.Raw("&#128007 &#8755; JOIN &#128371 US &#128007");
+}
+<div class="row">
+    <div class="col-md-12">
+        <form id="registerForm" method="post">
+            <div asp-validation-summary="All" role="alert"></div>
+            <div class="form-floating">          
+                <select asp-for="Input.LibraryId" asp-items="Model.Input.Libraries" class="form-select"></select>
+                <label asp-for="Input.LibraryId"></label>
+            </div>
+            <div class="form-floating">             
+                <input asp-for="Input.FirstName" class="form-control" aria-required="true"/>
+                <label asp-for="Input.FirstName"></label>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.LastName" class="form-control" aria-required="true"/>             
+                <label asp-for="Input.LastName"></label>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.Email" class="form-control" aria-required="true"/>
+                <label asp-for="Input.Email"></label>
+            </div>
+            <div class="form-floating">                
+                <input asp-for="Input.Password" class="form-control" aria-required="true"/>              
+                <label asp-for="Input.Password"></label>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.ConfirmPassword" class="form-control" aria-required="true"/>
+                <label asp-for="Input.ConfirmPassword"></label>
+            </div>
+            <div class="form-group">
+                <button id="registerSubmit" type="submit" class="btn btn-submit ">&#8755; Join Us</button>
+            </div>
+         
+        </form>
+    </div>
+</div>
+<hr class="border-primary-subtle" />
+<p class="text-center text-secondary" style="">@ViewData["Title"]</p>
+<hr class="border-primary-subtle" />
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,60 @@
+﻿@{
+    //TODO:b 261. Add _Layout.cshtml to Areas/Member/Views/Shared
+    //The Member Area is going to have a different layout than the default layout to demonstrate the flexibility of the layout system.
+    //This differs from the Administration area which uses the default layout but provides its own partials for navigation.
+
+    //TODO:b 442. Update content for Member Area Layout
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Biblicotheca Procuratio Systema : Edu-code">
+    <meta name="author" content="Q">
+    <partial name="_CSS" />
+</head>
+<body>
+    <header class="bg-dark">
+        <partial name="_Tesseract" />
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-1">
+            <div class="container-fluid m-0">
+                <partial name="_Toggle" />
+                <partial name="_Bibliotheca" />
+                <a class="nav-link d-flex align-center py-1 px-3" asp-area="" asp-controller="Home" asp-action="Index" title="Bibliotheca+Procuratio~Systema">
+                    <span class="material-symbols-outlined">hub</span><span>~B-P+S</span>
+                </a>
+                <div class="d-inline-flex">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-betweene">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" id="t-member-home" asp-area="Member" asp-controller="Home" asp-action="Index" title="RE:MEMBER HOME">
+                                <span class="material-symbols-outlined">eye_tracking</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="footer ">
+        <i class="bi bi-opencollective"> Bibliotheca + Procuratio ~ Systema</i>
+    </footer>
+    <partial name="_Scripts" />
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

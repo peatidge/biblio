@@ -1,0 +1,33 @@
+﻿@model ReferenceDTO
+@{
+    //TODO:b 364. Add Administration Reference Details View
+    ViewData["Title"] = $"Reference:";
+}
+<h1 class="war-p alert alert-heading border-info-subtle text-center" style="cursor:help" title="@Q.T">
+    <span class="material-symbols-outlined"> qr_code_scanner</span>
+    Reference: @Model.ISBN
+    <span class="material-symbols-outlined"> qr_code_scanner</span>
+</h1>
+<dl class="row alert border-info-subtle mx-0">
+    <dt class="col-sm-2">Title</dt>
+    <dd class="col-sm-10">@Model.Title</dd>
+    <dt class="col-sm-2">Author(s)</dt>
+    <dd class="col-sm-10">@Model.Author</dd>
+    <dt class="col-sm-2">Books</dt>
+    <dd class="col-sm-10">
+        <a asp-action="Index" asp-controller="Book" asp-route-id="@Model.Id" class="text-decoration-none war-p" title="@(Q.T)">
+            @Model.BookCount &#128214; 
+        </a>
+
+    </dd>
+    <dt class="col-sm-2">Available</dt>
+    <dd class="col-sm-10">
+            <span class="text-@(Model.IsAvailable ? "success" : "warning")">@Model.AvailableCount</span>
+         </dd>
+    <dt class="col-sm-2">On Hold</dt>
+    <dd class="col-sm-10">@Model.OnHoldCount</dd>
+    <dt class="col-sm-2">On Loan</dt>
+    <dd class="col-sm-10">@Model.OnLoanCount</dd>
+    <dt class="col-sm-2">Being Restored</dt>
+    <dd class="col-sm-10">@Model.BeingRestoredCount</dd>
+</dl>

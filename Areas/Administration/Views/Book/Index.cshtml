@@ -1,0 +1,83 @@
+﻿@model PagedResult<BookDTO>
+@{
+    //TODO:b 373. Add Index.cshtml to Administration Book Views 
+    ViewData["Title"] = Html.Raw($"&#128020; &#128020; &#128020; ");
+    var alrightyThen = Html.Raw($"Union &cup; Book &#128214; with Library &#127963; books {"{}"} =  &#127963; &cup; {"{&#128214;}"}");
+}
+@if (!string.IsNullOrWhiteSpace(TempData["Message"]?.ToString()))
+{
+    <div class="alert alert-@TempData["Alert"] alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        @{/*TODO:b 466. Update TempData Message to use Html Raw Book Index */}
+        @Html.Raw(TempData["Message"])
+    </div>
+}
+<div class="table-responsive">
+    <table>
+        <thead>
+            <tr>
+                <th>UID</th>
+                <th>ISBN</th>
+                <th>Reference</th>
+                <th>State</th>
+                <th class="text-end">
+                    <form asp-action="Create">
+                        <input type="hidden" name="Id" value="@ViewContext.RouteData.Values["id"]" />
+                        <button type="submit" class="d-inline-flex gap-1 align-middle btn btn-primary btn-sm" asp-action="Create" title="@alrightyThen">
+                            &#127963;&cup;{&#128214;}
+                        </button>
+                    </form>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var b in Model.Data)
+            {
+                string c = "15vw";
+                <tr>
+                    <td title="@b.UID" style="max-width:@c">@b.UID</td>
+                    <td title="@b.ISBN" style="max-width:@c">@b.ISBN</td>
+                    <td title="@b.Title" style="max-width:@c">@b.Title</td>
+                    <td title="@b.State" style="max-width:@c">@b.State</td>
+                    <td title="Actions" style="max-width:35vw" class="d-flex justify-content-end gap-1">
+                        <a asp-action="Details" asp-route-id="@b.UID" title="Book Details: @Q.T" class="mx-1">
+                            <i class="bi bi-binoculars-fill"></i>
+                        </a>
+                        <a title="Process Loan: @Q.T" asp-area="Administration" asp-controller="Transaction" asp-action="Loan" asp-route-uid="@b.UID">
+                            <span class="material-symbols-outlined">
+                                auto_stories
+                            </span>
+                        </a>
+                        <a title="Hold: @Q.T" asp-area="Administration" asp-controller="Transaction" asp-action="Hold" asp-route-uid="@b.UID">
+                            <span class="material-symbols-outlined">
+                                hand_bones
+                            </span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-center">
+    <partial name="_Pager" model='Model.GetPagerModel<BookDTO>("Book","Index")' />
+</div>
+<div class="war-p text-sm-center" style="cursor:help" data-wibble="@Q.R">
+    &#8734; &#127963; &#128020; Book &#128020; Book &#128020; Book &#128020; && &#128056; Read I.T. &#128056; Read I.T. &#128056; Read I.T. &#128056; && &#128020; Book &#128020; Book &#128020; Book &#128020; &#127963; &#8734;
+</div>
+<div class="scene" style="display:none">
+    <div class="book">
+        <p class="war-p">Photons</p>
+        <p class="war-p">2 Gravitons</p>
+        <p class="war-p">V.&#8734; (4+2)</p>
+    </div>
+    <div class="black-hole"><div class="supermassive"></div></div>
+</div>
+@section Scripts {
+    <environment include="Development">
+        <script src="/js/administration-book-index.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://quiz-engin-cdn-dtbyasb5ekdvc6h5.z01.azurefd.net/js/administration-book-index.min.js"></script>
+    </environment>
+}

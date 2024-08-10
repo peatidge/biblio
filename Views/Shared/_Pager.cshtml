@@ -1,0 +1,18 @@
+﻿@model Tela.Models.IPager
+@{
+    /* TODO:b 301. Add _Pager.cshtml partial view to Views Shared for pagination */
+}
+<cs-pager cs-paging-pagesize="@Model.PageSize"
+    cs-paging-pagenumber="@Model.PageNumber"
+    cs-paging-totalitems="@Model.TotalItems"
+    cs-pagenumber-param="pageNumber"
+    cs-paging-maxpageritems="1"
+    cs-pager-li-current-class="page-item active"
+    cs-pager-li-other-class="page-item"
+    cs-pager-li-non-active-class="page-item disabled"
+    cs-pager-link-current-class="page-link"
+    cs-pager-link-other-class="page-link"
+    asp-controller="@Model.Controller"
+    asp-action="@Model.Action"
+    asp-route-start="@(Model.Params.TryGetValue("start",out string?value)?value:"")">
+</cs-pager>

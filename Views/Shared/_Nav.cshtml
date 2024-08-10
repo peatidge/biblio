@@ -1,0 +1,54 @@
+﻿@{
+    //TODO:b 249. Add partial _Nav.cshtml file to /Views/Shared (default area)
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-1">
+    <div class="container-fluid m-0">
+        @{
+            /*TODO:b 338a. Add _Toggle paritial view to Views/Shared/_Nav.cshtml*/
+        }
+        <partial name="_Toggle" />
+        <partial name="_Bibliotheca" />
+        <a id="know-where" class="nav-link d-flex align-center py-1 px-3" asp-area="" asp-controller="Home" asp-action="Index" title="Bibliotheca+Procuratio~Systema"
+           data-custom-id="Home" data-custom-bhvr="NAVIGATION">
+            <span class="material-symbols-outlined">hub</span><span>~B-P+S</span>
+        </a>
+        <div class="d-inline-flex">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"
+                    data-custom-id="navbarToggle" data-custom-name="Toggle navigation" data-custom-bhvr="NAVIGATION">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1 align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link align-items-center d-flex" href="https://bibliotheca-companion.azurewebsites.net/" title="TRAVELERS' COMPANION" data-custom-id="Companion" data-custom-bhvr="NAVIGATION">
+                        <span class="material-symbols-outlined">
+                            explore
+                        </span>
+                    </a>
+                </li>
+                @if (User.IsInRole(Roles.LIBRARIAN.ToString()))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Administration" asp-controller="Home" asp-action="Index" title="LIBRARIAN HOME" data-custom-id="AdministrationHome" data-custom-bhvr="NAVIGATION">
+                            <span class="material-symbols-outlined">
+                                settings
+                            </span>
+                        </a>
+                    </li>
+                }
+                else if (User.IsInRole(Roles.MEMBER.ToString()))
+                {
+                    //TODO:b 444. Add Member Home Index link to _Nav.cshtml
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Member" asp-controller="Home" asp-action="Index" title="RE:MEMBER HOME" data-custom-id="MemberHome" data-custom-bhvr="NAVIGATION">
+                            <span class="material-symbols-outlined">eye_tracking</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+            <partial name="_LoginPartial" />
+        </div>
+    </div>
+</nav>

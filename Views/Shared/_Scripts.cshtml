@@ -1,0 +1,33 @@
+﻿@{
+    /*TODO:b 254. Add partial view _Scripts.cshtml to Shared views in default area */
+    /*TODO:b 336. Add reference the theme-toggle.min.js in _Scripts.html */
+}
+<environment include="Production,Development">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper-lite.min.js"
+            integrity="sha512-lyUg0oqWI46fVish42fPkWDJHjvi9YB4Hx23nzeMQcuYvDBqX/PJz0AnYxX0/LnuUrJCiLEQ6vVGreOkiFpSfA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
+            integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer">   
+     </script>
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+</environment>
+
+<script src="/js/kooky.min.js" asp-append-version="true"></script>
+<script src="/js/site.min.js" asp-append-version="true"></script>
+<script src="/js/theme-toggle.min.js" asp-append-version="true"></script>
+<script src="/js/tesseract.min.js" asp-append-version="true"></script>
+<script src="/js/temere-in-ignotum-praecipitare.min.js" asp-append-version="true"></script>
+
+@if (!ViewContext.ModelState.IsValid)
+{
+    <img src="/images/axe.webp" asp-append-version="true"  alt="Axolotl" class="axe" />
+}
+

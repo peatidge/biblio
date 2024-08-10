@@ -1,0 +1,58 @@
+﻿@model Tela.Areas.Administration.Models.Restoration.Schedule
+@{
+    /*TODO:b 423. Add Schedule View to Administration Restoration */
+    //TODO:b 416. Add Index view to Administration Restoration
+    ViewData["Title"] = "Schedule Restoration:";
+}
+<form action="Schedule" autocomplete="off" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-floating">
+                <input asp-for="Start" class="form-control" />
+                <label asp-for="Start"></label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating">
+                <input asp-for="End" class="form-control" />
+                <label asp-for="End"></label>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex align-items-center">
+        <div class="form-floating w-100">
+            <input id="Book_Search" class="form-control rounded-end-0" />
+            <label for="Book_Search">Book</label>
+        </div>
+        <div class="form-floating">
+            <button id="Book_Search_Clear" class="btn btn-danger rounded-0 rounded-end" type="button" aria-labelledby="Book_Search" style="padding:1rem .75rem;">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+    </div>
+    <div id="Book_Result" style="display:none"></div>
+    <div id="Book" class="input-container-readonly" style="display:@(Model.HasBook ? "block":"none")">
+        <div class="d-flex">
+            <input tabindex="-1" asp-for="Book.UID" />
+            <button class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button>
+        </div>
+        <input tabindex="-1" asp-for="Book.ISBN" />
+        <input tabindex="-1" asp-for="Book.Title" />
+        <input tabindex="-1" asp-for="Book.State" />
+    </div>
+    <div class="col-md-12">
+        <input type="submit" value="Schedule Restoration" id="submit-restoration" class="btn btn-primary w-100" title="@($"Schedule Restoration : {Q.T}")" />
+    </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <environment include="Development">
+        <script src="/js/search.min.js"></script>
+        <script src="/js/administration-restoration-schedule.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://quiz-engin-cdn-dtbyasb5ekdvc6h5.z01.azurefd.net/js/search.min.js"></script>
+        <script src="https://quiz-engin-cdn-dtbyasb5ekdvc6h5.z01.azurefd.net/js/administration-restoration-schedule.min.js"></script>
+    </environment>
+}

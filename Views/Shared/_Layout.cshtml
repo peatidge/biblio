@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Biblicotheca Procuratio Systema : Edu-code">
+    <meta name="author" content="Q">
+    @{/*TODO:b 312. Q.Ts sprinkled (Main Layout)*/}
+    <title>@ViewData["Title"] @Q.T</title>
+    @{
+        //TODO:b 247. Include partial _CSS.cshtml in _Layout.cshtml
+        //TODO:b 248. Update _Layout.cshtml
+        //* Add bg-dark to <header> 
+        //* Update <footer>...</footer> as below*/
+    }
+    <partial name="_CSS" />
+</head>
+<body>
+    <header class="bg-dark">
+        @{
+            /*TODO:b 433. Add _Tesseract partial view to _Layout */
+        }
+        <partial name="_Tesseract" />
+        @{
+            /*TODO:b 252. Replace navigation in _Layout.cshtml with partial view*/
+        }
+        <partial name="@(ViewData["Nav"]?.ToString() ?? "_Nav")" />
+    </header>
+    <div class="container">
+        @{
+            //TODO:b 369a. Add wibble wobble to site.js 
+            //TODO:b 369b. Add Wibble Wobble alert to _Layout.cshtml 
+            //TODO:b 370. Add administration-book-index.js
+            //TODO:b 371. Journey with a black hole e-book into .?.?. site.scss
+        }
+        <div id="wibble" class="alert  alert-info alert-dismissible fade show" style="display:none">
+            <div id="wobble"></div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer  id="toes" class="footer">
+        <i class="bi bi-opencollective" title="@Q.T"> Bibliotheca + Procuratio ~ Systema</i>
+    </footer>
+    @{
+        /*TODO:b 255. Replace scripts in _Layout.cshtml with partial view _Scripts*/
+    }
+    <partial name="_Scripts" />
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

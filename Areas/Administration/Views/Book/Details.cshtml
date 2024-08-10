@@ -1,0 +1,70 @@
+﻿@model BookDTO
+@{
+    //TODO:b 381. Add Administration Book Details View
+    ViewData["Title"] = $"{@Model.Title!.ToUpper()} : {Model.UID}";
+}
+<div class="accordion accordion-flush" id="book-accordion">  
+    <div class="accordion-item">
+        <h2 class="accordion-header p-0 w-100">  
+            <button id="btn-tau-cal" title="TAU" class="accordion-button collapsed p-1" type="button" data-bs-toggle="collapse" data-bs-target="#tau-cal" aria-expanded="false" aria-controls="#tau-cal">
+                <span style="font-size:3em;line-height:1rem;" class="ms-1 war-p mb-1">
+                    &#120591;<span style="font-size:small">au</span>
+                </span>
+            </button>    
+        </h2>
+        <div id="tau-cal" class="accordion-collapse" data-bs-parent="#book-accordion">
+            <div class="accordion-body p-1">
+               <div id="tau" style="max-height:70vh"></div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">     
+        <h2 class="accordion-header">
+            <button class="accordion-button p-1 border-0" type="button" data-bs-toggle="collapse" data-bs-target="#book" aria-expanded="true" aria-controls="book">
+                <span class="war-p">@Model.Title!.ToUpper()</span>
+            </button>
+        </h2>
+        <div id="book" class="accordion-collapse" data-bs-parent="#book-accordion">
+            <div class="accordion-body p-2">
+                <dl>
+                    <dt>UID</dt>
+                    <dd>@Model.UID</dd>
+                    <dt>ISBN</dt>
+                    <dd>@Model.ISBN</dd>
+                    <dt>Loans</dt>
+                    <dd>@Model.LoanCount @(Model.IsOnLoan ? "*On Loan" : "")</dd>
+                    <dt>On Hold</dt>
+                    <dd><span class="@(Model.IsOnHold ? "text-warning": "")">@(Model.IsOnHold ? "Yes": "No") </span></dd>
+                    <dt>Being Restored</dt>
+                    <dd>
+                        @if (Model.IsBeingRestored)
+                        {
+                            <span class="text-warning">YES</span>
+                        }
+                        else
+                        {
+                            <span class="d-flex justify-content-start gap-1">                             
+                                <span>NO</span>
+                                <a title="Schedule Restoration: @Q.T" asp-area="Administration" asp-controller="Restoration" asp-action="Schedule" asp-route-uid="@Model.UID">
+                                    <span class="material-symbols-outlined">construction</span>
+                                </a>
+                            </span>                           
+                        }                       
+                    </dd>
+                    <dt>Status</dt>
+                    <dd>@Model.State.ToString()</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" asp-for="UID" />
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js"></script>
+    <environment include="Development">
+        <script src="/js/administration-book-details.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://quiz-engin-cdn-dtbyasb5ekdvc6h5.z01.azurefd.net/js/administration-book-details.min.js"></script>
+    </environment>
+}

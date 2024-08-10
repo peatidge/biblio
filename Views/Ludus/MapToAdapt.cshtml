@@ -1,0 +1,201 @@
+﻿@model Tela.Data.Core.Ludus.MapToAdaptResult
+@{
+    ViewData["Title"] = "Map To Adapt";
+}
+<h1>Map To Adapt</h1>
+<div class="dl-horizontal">
+    <dl class="row">
+        <dt class="col-sm-3">ISBN</dt>
+        <dd class="col-sm-9">@Model.Reference.ISBN</dd>
+        <dt class="col-sm-3">Title</dt>
+        <dd class="col-sm-9">@Model.Reference.Title</dd>
+        <dt class="col-sm-3">Author</dt>
+        <dd class="col-sm-9">@Model.Reference.Author</dd>
+        <dt class="col-sm-3">Book Count</dt>
+        <dd class="col-sm-9">@Model.Reference.BookCount</dd>
+        <dt class="col-sm-3">Is Available</dt>
+        <dd class="col-sm-9">@Model.Reference.IsAvailable</dd>
+        <dt class="col-sm-3">Available Count</dt>
+        <dd class="col-sm-9">@Model.Reference.AvailableCount</dd>
+        <dt class="col-sm-3">Unavailable Count</dt>
+        <dd class="col-sm-9">@Model.Reference.UnavailableCount</dd>
+        <dt class="col-sm-3">On Hold Count</dt>
+        <dd class="col-sm-9">@Model.Reference.OnHoldCount</dd>
+        <dt class="col-sm-3">On Loan Count</dt>
+        <dd class="col-sm-9">@Model.Reference.OnLoanCount</dd>
+        <dt class="col-sm-3">Being Restored Count</dt>
+        <dd class="col-sm-9">@Model.Reference.BeingRestoredCount</dd>
+    </dl>
+</div>
+<div class="dl-horizontal">
+    <dl class="row">
+        <dt class="col-sm-3">ISBN</dt>
+        <dd class="col-sm-9">@Model.Reference.ISBN</dd>
+        <dt class="col-sm-3">Title</dt>
+        <dd class="col-sm-9">@Model.Reference.Title</dd>
+        <dt class="col-sm-3">Author</dt>
+        <dd class="col-sm-9">@Model.Reference.Author</dd>
+        <dt class="col-sm-3">Book Count</dt>
+        <dd class="col-sm-9">@Model.Reference.BookCount</dd>
+        <dt class="col-sm-3">Is Available</dt>
+        <dd class="col-sm-9">@Model.Reference.IsAvailable</dd>
+        <dt class="col-sm-3">Available Count</dt>
+        <dd class="col-sm-9">@Model.Reference.AvailableCount</dd>
+        <dt class="col-sm-3">Unavailable Count</dt>
+        <dd class="col-sm-9">@Model.Reference.UnavailableCount</dd>
+        <dt class="col-sm-3">On Hold Count</dt>
+        <dd class="col-sm-9">@Model.Reference.OnHoldCount</dd>
+        <dt class="col-sm-3">On Loan Count</dt>
+        <dd class="col-sm-9">@Model.Reference.OnLoanCount</dd>
+        <dt class="col-sm-3">Being Restored Count</dt>
+        <dd class="col-sm-9">@Model.Reference.BeingRestoredCount</dd>
+    </dl>
+</div>
+<div class="dl-horizontal">
+    <dl class="row">
+        <dt class="col-sm-3">ISBN</dt>
+        <dd class="col-sm-9">@Model.Reference.ISBN</dd>
+        <dt class="col-sm-3">Title</dt>
+        <dd class="col-sm-9">@Model.Reference.Title</dd>
+        <dt class="col-sm-3">Author</dt>
+        <dd class="col-sm-9">@Model.Reference.Author</dd>
+        <dt class="col-sm-3">Book Count</dt>
+        <dd class="col-sm-9">@Model.Reference.BookCount</dd>
+        <dt class="col-sm-3">Is Available</dt>
+        <dd class="col-sm-9">@Model.Reference.IsAvailable</dd>
+        <dt class="col-sm-3">Available Count</dt>
+        <dd class="col-sm-9">@Model.Reference.AvailableCount</dd>
+        <dt class="col-sm-3">Unavailable Count</dt>
+        <dd class="col-sm-9">@Model.Reference.UnavailableCount</dd>
+        <dt class="col-sm-3">On Hold Count</dt>
+        <dd class="col-sm-9">@Model.Reference.OnHoldCount</dd>
+        <dt class="col-sm-3">On Loan Count</dt>
+        <dd class="col-sm-9">@Model.Reference.OnLoanCount</dd>
+        <dt class="col-sm-3">Being Restored Count</dt>
+        <dd class="col-sm-9">@Model.Reference.BeingRestoredCount</dd>
+    </dl>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>UID</th>
+                <th>Member UserName</th>
+                <th>Librarian UserName</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model.Transactions)
+            {
+                <tr>
+                    <td>@t.Type</td>
+                    <td>@t.ISBN</td>
+                    <td>@t.Title</td>
+                    <td>@t.UID</td>
+                    <td>@t.Member!.UserName</td>
+                    <td>@t.Librarian!.UserName</td>
+                    <td>@t.Start</td>
+                    <td>@t.End</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>UID</th>
+                <th>Member UserName</th>
+                <th>Librarian UserName</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model.Transactions)
+            {
+                <tr>
+                    <td>@t.Type</td>
+                    <td>@t.ISBN</td>
+                    <td>@t.Title</td>
+                    <td>@t.UID</td>
+                    <td>@t.Member!.UserName</td>
+                    <td>@t.Librarian!.UserName</td>
+                    <td>@t.Start</td>
+                    <td>@t.End</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>UID</th>
+                <th>Member UserName</th>
+                <th>Librarian UserName</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model.Transactions)
+            {
+                <tr>
+                    <td>@t.Type</td>
+                    <td>@t.ISBN</td>
+                    <td>@t.Title</td>
+                    <td>@t.UID</td>
+                    <td>@t.Member!.UserName</td>
+                    <td>@t.Librarian!.UserName</td>
+                    <td>@t.Start</td>
+                    <td>@t.End</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div> 
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>UID</th>
+                <th>Member UserName</th>
+                <th>Librarian UserName</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model.Transactions)
+            {
+                <tr>
+                    <td>@t.Type</td>
+                    <td>@t.ISBN</td>
+                    <td>@t.Title</td>
+                    <td>@t.UID</td>
+                    <td>@t.Member!.UserName</td>
+                    <td>@t.Librarian!.UserName</td>
+                    <td>@t.Start</td>
+                    <td>@t.End</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

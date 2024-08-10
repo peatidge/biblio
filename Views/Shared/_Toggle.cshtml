@@ -1,0 +1,27 @@
+﻿@{/*TODO:b 337. Add _Toggle.cshtml to Views/Shared */}
+<ul class="m-0 p-0" id="boggle">
+    <li class="nav-item dropdown theme-toggle" style="width:auto">
+        <button class="btn btn-link px-3" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Switch Theme" title="Switch Theme">
+            <span id="bd-theme-text">
+                <svg class="theme-icon-active"><use href="#moon-stars-fill"></use></svg>
+            </span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="bd-theme-text">
+            <li title="Switch to Light Theme">
+                <button type="button" class="dropdown-item" data-bs-theme-value="light" aria-pressed="false">
+                    <svg class="opacity-50"><use href="#sun-fill"></use></svg>
+                </button>
+            </li>
+            <li title="Switch to Dark Theme">
+                <button type="button" class="dropdown-item" data-bs-theme-value="dark" aria-pressed="true">
+                    <svg class="opacity-50"><use href="#moon-stars-fill"></use></svg>
+                </button>
+            </li>
+            <li title="Switch to Auto (system)">
+                <button type="button" class="dropdown-item" data-bs-theme-value="auto" aria-pressed="false">
+                    <svg class="opacity-50"><use href="#circle-half"></use></svg>
+                </button>
+            </li>
+        </ul>
+    </li>
+</ul>

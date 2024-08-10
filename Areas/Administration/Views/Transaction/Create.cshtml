@@ -1,0 +1,99 @@
+﻿@model Tela.Areas.Administration.Models.Transaction.Create
+@{
+    //TODO:b 401. Add Administration Transaction Create View (Hold/Loan)
+    ViewData["Title"] = $"{Model.Type}:";
+    (string title,string icon) genus = Model.Type == Transaction.TransactionType.Loan  ? ("lǣn","auto_stories") : ("στάσις","hand_bones");
+}
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="@Model.Type" autocomplete="off" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-floating d-flex mb-2 gap-1 align-items-center">              
+                <select id="BookState" name="BookState" class="form-select">
+                    <option>All</option>
+                    <option value="Available" selected>Available</option>
+                    <option value="Unavailable">Unavailable</option>
+                </select>
+                <label for="BookState" style="white-space:nowrap">Status</label>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-2">                                     
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="form-floating w-100">
+                            <input id="Member_Search" class="form-control rounded-end-0" />
+                            <label for="Member_Search">Member</label>                           
+                        </div>
+                        <div class="form-floating ">
+                            <button id="Member_Search_Clear" class="btn btn-danger rounded-0 rounded-end" type="button" style="padding:1rem .75rem;" aria-label="Member Search Clear" title="Click to clear search text">
+                            <i class="bi bi-x"></i>
+                        </button> 
+                        </div>
+                    </div>
+                    <div id="Member_Result" style="display:none"></div>
+                    <div id="Member" class="input-container-readonly" style="display:@(Model.HasMember ? "block":"none")">
+                        <div class="d-flex">
+                            <input tabindex="-1" asp-for="Member.Id" />
+                            <label asp-for="Member.Id" ></label>
+                            <button class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button>
+                        </div>
+                        <label asp-for="Member.UserName"></label>
+                        <input tabindex="-1" asp-for="Member.UserName" />
+                        <label asp-for="Member.FirstName"></label>
+                        <input tabindex="-1" asp-for="Member.FirstName" />
+                        <label asp-for="Member.LastName">?</label>
+                        <input tabindex="-1" asp-for="Member.LastName" />
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="d-flex align-items-center">
+                        <div class="form-floating  w-100">
+                            <input id="Book_Search" class="form-control rounded-end-0" />
+                            <label for="Book_Search">Book</label>
+                        </div>
+                        <div class="form-floating">
+                            <button id="Book_Search_Clear" class="btn btn-danger rounded-0 rounded-end" type="button"  aria-label="Book Search Clear" title="Click to clear search text" style="padding:1rem .75rem;">
+                                <i class="bi bi-x"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Book_Result" style="display:none"></div>
+                    <div id="Book" class="input-container-readonly" style="display:@(Model.HasBook ? "block":"none")">
+                        <div class="d-flex">
+                            <input tabindex="-1" asp-for="Book.UID" />
+                            <button class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button>
+                        </div>
+                        <input tabindex="-1" asp-for="Book.ISBN" />
+                        <input tabindex="-1" asp-for="Book.Title" />
+                        <input tabindex="-1" asp-for="Book.State" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button id="submit-transaction-request" type="submit" class="btn btn-primary w-100" title="@($"{Model.Type} Book : {Q.T}")" >
+                        <span class="d-flex justify-content-center gap-1">
+                            @genus.title
+                            <span class="material-symbols-outlined">@genus.icon</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+  
+
+    <environment include="Development">
+        <script src="/js/search.min.js"></script>
+        <script src="/js/administration-transaction-create.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://quiz-engin-cdn-dtbyasb5ekdvc6h5.z01.azurefd.net/js/search.min.js"></script>
+        <script src="https://quiz-engin-cdn-dtbyasb5ekdvc6h5.z01.azurefd.net/js/administration-transaction-create.min.js"></script>
+    </environment>
+
+
+
+}

@@ -1,0 +1,84 @@
+﻿@model (Library Library, IdentityRole[] Roles, Librarian Librarian, Member Member)
+@{
+    ViewBag.Title = "Ludas Evolvere";
+}
+<div asp-validation-summary="All"></div>
+@if (this.ViewContext.ModelState.IsValid)
+{
+    <dl class="alert alert-primary ">
+        <dt>Id: </dt>
+        <dd>@Model.Library.Id</dd>
+        <dt>Name: </dt>
+        <dd>@Model.Library.Name</dd>
+        <dt>Blurbosity: </dt>
+        <dd>@Model.Library.Blurbosity</dd>
+    </dl>
+    <dl class="alert alert-primary">
+        <dt>Id: </dt>
+        <dd>@Model.Librarian.Id</dd>
+        <dt>First Name: </dt>
+        <dd>@Model.Librarian.FirstName</dd>
+        <dt>Last Name: </dt>
+        <dd>@Model.Librarian.LastName</dd>
+        <dt>Email: </dt>
+        <dd>@Model.Librarian.Email</dd>
+        <dt>Role: </dt>
+        <dd>@Model.Librarian.Role</dd>
+        <dt>Registered: </dt>
+        <dd>@Model.Librarian.Registered</dd>
+        <dt>Library Id: </dt>
+        <dd>@Model.Librarian.LibraryId</dd>
+    </dl>
+    <dl class="alert alert-primary">
+        <dt>Id: </dt>
+        <dd>@Model.Member.Id</dd>
+        <dt>First Name: </dt>
+        <dd>@Model.Member.FirstName</dd>
+        <dt>Last Name: </dt>
+        <dd>@Model.Member.LastName</dd>
+        <dt>Email: </dt>
+        <dd>@Model.Member.Email</dd>
+        <dt>Role: </dt>
+        <dd>@Model.Member.Role</dd>
+        <dt>Registered: </dt>
+        <dd>@Model.Member.Registered</dd>
+        <dt>Library Id: </dt>
+        <dd>@Model.Member.LibraryId</dd>
+    </dl>
+    <div class="alert alert-primary">
+        @foreach (var role in Model.Roles){     
+            <div>@role.Name</div>       
+        }
+    </div>
+    <div class="alert alert-primary">
+        @foreach (var r in Model.Library.References){
+            <div class="alert alert-secondary ">
+                <div class="alert alert-info">
+                    <span>ISBN: @r.ISBN</span><span>@r.Title</span><span>@r.Author</span>
+                </div>
+                @foreach(var b in r.Books){
+                    <div class="alert alert-info">
+                        <div>UID: @b.UID</div>
+                        @foreach(var t in b.Transactions){
+                            <div class="alert alert-warning ">
+                                <div>Id: @t.Id</div>
+                                <div>@t.Type</div>
+                                <div>Member: @t.Member.UserName</div>
+                                <div>Librarian: @t.Librarian.UserName</div>
+                                <div>@t.Start > @t.End</div>
+                            </div>
+                        }
+                        @foreach (var re in b.Restorations)
+                        {
+                            <div class="alert alert-warning">
+                                <div>Restoration Id: @re.Id</div>
+                                <div>Librarian: @re.Librarian.UserName</div>
+                                <div>@re.Start > @re.End</div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}

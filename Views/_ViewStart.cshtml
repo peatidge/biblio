@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "_Layout";
+    //TODO:b 251. Add logic to dynaically set ViewData["Nav"] based on area 
+    ViewData["Nav"] = "_Nav";
+    var area = ViewContext.RouteData.Values.FirstOrDefault(x => x.Key == "area");
+    if (area.Key == "area" && (area.Value ?? "").ToString() != "Identity")
+    {
+        ViewData["Nav"] = $"~/Areas/{area.Value}/Views/Shared/Nav.cshtml";
+    }
+}

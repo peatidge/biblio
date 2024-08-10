@@ -1,0 +1,38 @@
+﻿@inject Tela.Data.Core.ApplicationDbContext _context
+@{
+    //TODO:b 451. Add _Bibliotheca.cshtml to Tela/Views/Shared
+    //Add Partial _Bibliotheca after _Toggle to:
+    //~Shared _Nav.cshtml, 
+    //~Administration Shared _Nav.cshtml,
+    //~Members _Layout
+    //~And any other view that may require it sometime...
+    //~Add libraies folder and contained images to the image folder
+    if (int.TryParse(ViewData["bibliotheca"]?.ToString(), out int libraryId))
+    {
+       var library = _context.Libraries.Find(libraryId);
+        @if (library != null)
+        {
+            <img src="/images/libraries/@(library.Name).webp"
+                id="library-logo-modal"
+                 alt="@library.Name" title="@library.Name"
+                 data-bs-toggle="modal" data-bs-target="#libraryModal"
+                 class="rounded mx-2" width="30" height="35" style="cursor:pointer" />
+            <div class="modal" id="libraryModal" tabindex="-1" data-bs-backdrop="false">
+                <div class="modal-dialog text-center z-n">
+                    <div class="modal-content">
+                        <div class="modal-header py-1 px-2">
+                            <h1 class="modal-title text-uppercase war-p w-100 text-center" style="font-size:medium">@library.Name</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body justify-content-center">
+                            <img src="/images/libraries/@(library.Name).webp" width="150" height="175" class="rounded-2" />
+                        </div>
+                        <div class="modal-footer war-p p-1 justify-content-center" style="font-size:small;cursor:help" title="@Q.T">
+                            <div>BIBLIOTESSERAXOLOTL CLUCKTASTROPHE CONTRIBUTER</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }         
+    }
+}

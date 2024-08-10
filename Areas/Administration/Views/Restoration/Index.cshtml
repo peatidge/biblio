@@ -1,0 +1,43 @@
+﻿@model PagedResult<RestorationDTO>
+@{
+    //TODO:b 416. Add Index view to Administration Restoration
+    ViewData["Title"] = "Restorations:";
+}
+<h1 class="d-flex justify-content-between align-items-center war-p" style="font-size:large">
+    Restorations
+    <a title="Schedule Book Restoration : @Q.T" id="biblio-resurrection" class="d-flex btn btn-primary text-decoration-none align-items-center" asp-area="Administration" asp-controller="Restoration" asp-action="Schedule">
+        + <span class="material-symbols-outlined">construction</span>
+        <span style="font-size:small;padding-left:5px;">BIBLIO-RESURRECTION</span>      
+    </a>
+</h1>
+<div class="table-responsive">
+    <table id="t-restoration-table">
+        <thead>
+            <tr>
+                <th>UID</th>
+                <th>ISBN</th>
+                <th>BOOK</th>
+                <th>START</th>
+                <th>END</th>             
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model.Data)
+            {
+                string width = "20vw";
+                <tr>
+                    <td title="@m.Book.UID" style="max-width:10vw">
+                        <a asp-action="Details" asp-controller="Book" asp-route-id="@m.Book.UID" class="text-decoration-none war-p restoration-book-link">@m.Book.UID</a>
+                       </td>
+                    <td title="@m.Book.ISBN" style="max-width:@width">@m.Book.ISBN</td>
+                    <td title="@m.Book.Title" style="max-width:@width">@m.Book.Title</td>
+                    <td title="@m.Start: " style="max-width:@width">@m.Start.ToShortDateString()</td>
+                    <td title="@m.End" style="max-width:@width">@m.End.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-center mt-1">
+    <partial name="_Pager" model='Model.GetPagerModel<RestorationDTO>("Restoration","Index")' />
+</div>

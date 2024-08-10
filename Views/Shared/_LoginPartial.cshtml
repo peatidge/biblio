@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Identity
+@{/*TODO:a 31. Update DI in Login Partial to use LibraryUser*/}
+@inject SignInManager<LibraryUser> SignInManager
+@inject UserManager<LibraryUser> UserManager
+@{/*TODO:b 253. Update html for _LoginPartial.cshtml */}
+<ul class="navbar-nav align-items-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="d-flex nav-item px-2 align-items-center justify-content-center gap-1">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity?.Name!</a>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link" style="color:red;" title="Exit Planet Scientia">
+                    <i class="material-icons">rocket_launch</i>
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link" id="commence-self-implication" asp-area="Identity" asp-page="/Account/Register">&#8755; Join</a>
+        </li>
+        <li class="nav-item">
+            <a id="trance-end" class="nav-link" asp-area="Identity" asp-page="/Account/Login">&#10773; Enter</a>
+        </li>
+    }
+    <li class="nav-item">
+        <button id="yelp" class="nav-link py-0" title="Start Help Tour">
+            <i class="bi bi-patch-question-fill" style="font-size:x-large"></i>
+        </button>
+    </li>
+</ul>

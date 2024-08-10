@@ -1,0 +1,49 @@
+﻿@using Tela.Models
+@model PagedResult<MemberDTO>
+@{
+    //TODO:b 305. Add Administration Member Index View
+    ViewData["Title"] = "Members:"; 
+    //TODO:b 315. Q.Ts sprinkled (Admin Member Index), continue to sprinkle at will
+}
+<div class="table-responsive">
+    <table id="t-members-table">
+        <thead>
+            <tr>
+                <th >USERNAME</th>
+                <th>FORENAME</th>
+                <th>SURNAME</th>
+                <th title="@Html.Raw($"&#127795; &#x1F47D; IMPLICATE &#128506;&#128760; SPECIMEN &#128297;  &#128297; : {Q.T}")" style="cursor:help">
+                    <a class="nav-link text-end" asp-action="Create">
+                        <span class="material-icons" id="t-members-create-btn">follow_the_signs</span>
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model.Data)
+            {
+                <tr>
+                    <td title="@m.UserName" style="max-width:25vw">@m.UserName</td>
+                    <td title="@m.FirstName" style="max-width:25vw">@m.FirstName</td>
+                    <td title="@m.LastName" style="max-width:25vw">@m.LastName</td>
+                    @{/*TODO:b 402. Update links in Administration Member Index (shortcuts for loaning/holding a book for a member)*/}
+                    <td class="d-flex justify-content-end gap-2" style="max-width:25vw">
+                        <a title="Process Loan: @Q.T" class="nav-link p-0 t-members-loan-link" asp-area="Administration" asp-controller="Transaction" asp-action="Loan" asp-route-memberId="@m.Id">
+                            <span class="material-symbols-outlined">
+                                auto_stories
+                            </span>
+                        </a>
+                        <a title="Hold: @Q.T" class="nav-link p-0 t-members-hold-link" asp-area="Administration" asp-controller="Transaction" asp-action="Hold" asp-route-memberId="@m.Id">
+                            <span class="material-symbols-outlined">
+                                hand_bones
+                            </span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-center mt-1">
+    <partial name="_Pager" model='Model.GetPagerModel<MemberDTO>("Member","Index")' />
+</div>

@@ -1,0 +1,41 @@
+﻿@{
+    /*TODO:b 313. Update Title (Administration Home Index);*/
+    ViewData["Title"] = "Administration Home (sweet) Home:";
+    //TODO:b 429. Add administration - home - index.js file to the project.
+    //TODO:b 430. Update Administration Index Home (sweet) Home to include the books status chart
+    //TODO:b 473. Update Administration Home Index to include the percentage chart
+    //TODO:b 474. Update administration.home.index.js to include the percentage chart etc...  
+}
+<div id="studio">
+    <div id="artist" class="d-flex justify-content-end align-items-center gap-xl-5 p-1 war-p">
+        <span class="d-flex align-items-center gap-1">
+            <span id="trance-out" class="material-symbols-outlined mojo" data-chart="percentage" style="font-size:xx-large;cursor:pointer">
+                humidity_percentage
+            </span>
+            <input type="date" id="start" class="form-control border-0 p-1 percentage hide-me" value="@DateTime.Now.AddDays(-42).ToString("yyyy-MM-dd")" style="max-width:115px;cursor:pointer;visibility:collapse;" />
+           
+        </span>
+        <span id="start-status-workshop" class="material-symbols-outlined mojo" data-chart="count" style="font-size:xx-large;cursor:pointer" title="Count of Transactions & Restorations">
+            functions
+        </span>
+
+    </div>
+    <div id="easel" class="img img-fluid">
+        <canvas id="percentage-ch-ch-ch-art" class="percentage hide-me"></canvas>
+        <canvas id="count-ch-ch-ch-art" class="count hide-me" style="visibility:collapse;"></canvas>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"
+        type="module"
+        integrity="sha512-CQBWl4fJHWbryGE+Pc7UAxWMUMNMWzWxF4SQo9CgkJIN1kx6djDQZjh3Y8SZ1d+6I+1zze6Z7kHXO7q3UyZAWw==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer">
+    </script>
+    <environment include="Development">
+        <script src="/js/administration-home-index.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://quiz-engin-cdn-dtbyasb5ekdvc6h5.z01.azurefd.net/js/administration-home-index.min.js?v=mars"></script>
+    </environment>
+}

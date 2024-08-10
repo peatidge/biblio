@@ -1,0 +1,30 @@
+﻿@model Tela.Areas.Administration.Models.Member.Create
+@{
+    //TODO:b 297. Add Administration Member Create.cshtml
+    ViewData["Title"] ="Register Member:"; 
+    //TODO:b 314. Q.Ts sprinkled (Admin Member Create)
+}
+<form action="Create" method="post">
+    <div asp-validation-summary="All" role="alert"></div>
+    <div class="form-floating" title="Member's First Name e.g. Bob'">
+        <input asp-for="FirstName" class="form-control" aria-required="true" placeholder="e.g. Bob" />
+        <label asp-for="FirstName"></label>
+    </div>
+    <div class="form-floating" title="Members Last Name e.g. Dobbs">
+        <input asp-for="LastName" class="form-control" aria-required="true" placeholder="e.g. Dobbs" />
+        <label asp-for="LastName"></label>
+    </div>
+    <div class="form-floating" title="Member's Email Addres e.g. bob.dobbs@dobbs.what">
+        <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" placeholder="e.g. i@xyz.domain" />
+        <label asp-for="Email"></label>
+    </div>
+    <div class="form-floating">
+        <button type="submit" class="btn-submit" title="Register Member: @Q.T">&#128760; Enfold Specimen &#128506;</button>
+    </div>
+    <hr class="border border-primary-subtle" />
+    <p class="text-sm-center text-secondary">For now they are just given the password "1" (super-secure)</p>
+    <hr class="border border-primary-subtle" />
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

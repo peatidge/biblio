@@ -1,0 +1,23 @@
+﻿@model TransactionDTO
+@{
+    //TODO:b 410. Add Administration Transaction Return View
+    ViewData["Title"] = "Return:";
+}
+<div asp-validation-summary="All" role="alert" ></div>
+<div class="input-container-readonly">
+    <div><strong>Member:</strong> @Model.Member?.UserName</div>
+    <div><strong>Checked Out By:</strong> @Model.Librarian?.UserName</div>
+    <div><strong>UID:</strong> @Model.UID</div>
+    <div><strong>ISBN:</strong> @Model.ISBN</div>
+    <div><strong>Book:</strong> @Model.Title</div>
+    <div><strong>Checked Out</strong> @Model.Start.ToShortDateString()</div>
+</div>
+@if(Model.End.Equals(DateTime.MaxValue))
+{
+    <form method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="MemberId" />
+        <input type="hidden" asp-for="Book.UID" />
+        <input type="submit" class="btn btn-primary w-100" value="Return" />
+    </form>        
+}

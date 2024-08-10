@@ -1,0 +1,50 @@
+﻿@model PagedResult<ReferenceDTO>
+@{
+    //TODO:b 353. Add Index.cshtml to Administration Views Reference
+    ViewData["Title"] = "References:";
+}
+<h1 title="Book References @(Q.T)" class="d-flex gap-1 align-items-center justify-content-center fs-2" style="cursor:help;font-size:1rem;">
+    REF<i class="bi-journal-bookmark fs-3"></i>ERE<i class="bi bi-qr-code-scan fs-3"></i>NCE<i class="bi bi-upc-scan fs-3"></i>S<span class="fs-1 position-relative" style="bottom:10px;"> &#3843;</span>
+</h1>
+<div class="table-responsive">
+    <table id="t-references-table">
+        <thead>
+            <tr>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th style="max-width:5rem">Books</th>
+                <th class="text-end">
+                    <a class="d-inline-flex gap-1 align-middle btn btn-primary" id="t-reference-create-btn" asp-action="Create" title="Add Reference: @Q.T">
+                        <i class="bi bi-dice-4-fill"></i>
+                        <span>+</span>
+                        <i class="bi bi-dice-2-fill"></i>
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model.Data)
+            {
+                string c = "15vw"; 
+                <tr>
+                    <td title="@r.ISBN" style="max-width:@c">@r.ISBN</td>
+                    <td title="@r.Title" style="max-width:@c">@r.Title</td>
+                    <td title="@r.Author" style="max-width:@c">@r.Author</td>
+                    <td>
+                        <a asp-action="Index" asp-controller="Book" asp-route-id="@r.Id" class="btn btn-link text-center w-100 text-decoration-none text-sm t-reference-books-link" title="@(Q.T)" style="">
+                            @r.BookCount<i class="bi bi-book ms-1"></i>
+                        </a> 
+                    </td>
+                    <td class="text-end" style="max-width:30vw">
+                        <a asp-action="Edit" asp-route-id="@r.Id" class="btn btn-outline-warning btn-sm t-reference-edit-link" title="Mutate Reference: @(Q.T)">&#9762</a>
+                        <a asp-action="Details" asp-route-id="@r.Id" class="btn btn-outline-info btn-sm t-reference-details-link" title="Let's take a closer look: @(Q.T)">&#128083;</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-center">
+    <partial name="_Pager" model='Model.GetPagerModel<ReferenceDTO>("Reference","Index")' />
+</div>

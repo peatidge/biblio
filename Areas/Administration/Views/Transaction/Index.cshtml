@@ -1,0 +1,77 @@
+﻿@model PagedResult<TransactionDTO>
+@{
+    //TODO:b 387. Add Administration Transaction Index View
+    ViewData["Title"] = "Transactions:";
+}
+@if (!string.IsNullOrWhiteSpace(TempData["Error"]?.ToString()))
+{   //TODO:b 470. Update Temp Data Error Message to use Html.Raw in Transaction Index (administration)
+    <div class="alert alert-danger">
+        @Html.Raw(TempData["Error"]) 
+    </div>
+}
+@{/*TODO:b 482. Add start date input and update pager in Transaction Index, also update site.js (see file for on blur event handler added)*/}
+<form asp-action="Index" method="get" class="page-starter d-flex justify-content-end align-items-center gap-1 w-100">
+    <input type="date" 
+        id="start" 
+        name="start"
+        value="@ViewBag.Start"
+        class="form-control border-0 p-1" 
+        style="max-width:115px;cursor:pointer;" 
+    />
+    <button id="page-turner" class="btn btn-link text-decoration-none war-p q" style="font-size:xx-large" title="Query Transactions (filter by start date)">Q</button>
+</form>
+<div class="table-responsive">
+    <table id="t-transactions-table">
+        <thead><tr><td>Type</td><td>Member</td><td>Librarian</td><td>Book</td><td>Out</td><td id="t-transactions-actions" class="text-end" title="End Date shown if no actions available i.e. transaction is complted">Action</td></tr></thead>
+        <tbody>
+            @foreach (var t in Model.Data)
+            {
+                string c = "14vw";
+                <tr>
+                    <td style="max-width:@c" title="@t.Type">@t.Type</td>
+                    <td style="max-width:@c" title="@t.Member?.UserName">@t.Member?.UserName</td>
+                    <td style="max-width:@c" title="@t..Librarian?.UserName">@t.Librarian?.UserName</td>
+                    <td style="max-width:@c" title="@($"ISBN: {t.ISBN}\nUID: {t.UID}\n{t.Book?.State}")">
+                        <a asp-action="Details" asp-controller="Book" asp-route-id="@t.UID" class="text-decoration-none text-@(t.Book?.State == State.Types.Available ? "success" : "warning")">
+                            @t.Title
+                       </a>
+                    </td>
+                    <td style="max-width:@c" title="@t.Start.ToShortDateString()">@t.Start.ToShortDateString()</td>
+                    <td style="max-width:16vw"  class="d-flex justify-content-end gap-1">
+                        @if (t.End.Equals(DateTime.MaxValue))
+                        {
+                            switch (t.Type)
+                            {
+                                case Transaction.TransactionType.Loan:
+                                    <a style="text-decoration:none" title="Process Loan Return : @Q.T" asp-action="Return" asp-route-id="@t.Id">
+                                        <span class="material-symbols-outlined">
+                                            manage_history
+                                        </span>
+                                    </a>
+                                    break;
+                                case Transaction.TransactionType.Hold:
+                                    <form asp-action="Release" asp-controller="Transaction" method="post">
+                                        <input type="hidden" name="id" value="@t.Id" />
+                                        <input type="hidden" name="uid" value="@t.UID" />
+                                        <button class="btn btn-link p-0" style="text-decoration:none" title="Process Release : @Q.T">
+                                            <span class="material-symbols-outlined">
+                                                self_improvement
+                                            </span>
+                                        </button>
+                                    </form>
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            @t.End.ToShortDateString()
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-center">
+    <partial name="_Pager" model='Model.GetPagerModel<TransactionDTO>("Transaction","Index",qParams:new Dictionary<string,string>{{"start",ViewBag.Start}})' />
+</div>
